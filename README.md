@@ -66,7 +66,7 @@ The code follows a layered architecture: Controllers call Services, Services cal
    dotnet run
    ```
 
-5. Test the API using Postman or any HTTP client at `https://localhost:5001/api`
+5. Test the API using Postman or any HTTP client at `https://localhost:5000/api`
 
 ## API Endpoints
 
