@@ -4,17 +4,31 @@ namespace EmployeeDepartmentAndProjectManagement.Models
 {
     public class EmployeeProject
     {
-        // Composite Primary Key (configured in DbContext)
+        /// <summary>
+        /// Gets or Sets employeeID.
+        /// </summary>
         public int EmployeeId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets projectID.
+        /// </summary>
         public int ProjectId { get; set; }
 
-        // The role this employee has in this project
+        /// <summary>
+        /// Gets or Sets role.
+        /// </summary>
         [Required]
         [StringLength(50)]
         public string Role { get; set; }
 
-        // Navigation properties
+        /// <summary>
+        /// Gets or Sets employee.
+        /// </summary>
         public Employee Employee { get; set; }
+
+        /// <summary>
+        /// Gets or Sets project.
+        /// </summary>
         public Project Project { get; set; }
     }
 }

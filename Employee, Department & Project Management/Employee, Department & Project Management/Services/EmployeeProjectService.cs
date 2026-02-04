@@ -42,17 +42,14 @@ namespace EmployeeDepartmentAndProjectManagement.Services
 
         public async Task<(EmployeeProjectResponseDto Assignment, string ErrorMessage)> AssignAsync(AssignEmployeeDto dto)
         {
-            // Check if employee exists
             var employee = await _employeeRepository.GetByIdAsync(dto.EmployeeId);
             if (employee == null)
                 return (null, $"Employee with ID {dto.EmployeeId} not found");
 
-            // Check if project exists
             var project = await _projectRepository.GetByIdAsync(dto.ProjectId);
             if (project == null)
                 return (null, $"Project with ID {dto.ProjectId} not found");
 
-            // Check if assignment already exists
             if (await _repository.ExistsAsync(dto.EmployeeId, dto.ProjectId))
                 return (null, "Employee is already assigned to this project");
 
@@ -65,7 +62,6 @@ namespace EmployeeDepartmentAndProjectManagement.Services
 
             await _repository.CreateAsync(assignment);
 
-            // Reload with includes
             assignment = await _repository.GetByIdAsync(dto.EmployeeId, dto.ProjectId);
 
             return (MapToResponseDto(assignment), null);

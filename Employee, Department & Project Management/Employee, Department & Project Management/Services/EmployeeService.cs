@@ -45,11 +45,9 @@ namespace EmployeeDepartmentAndProjectManagement.Services
 
         public async Task<(EmployeeResponseDto Employee, string ErrorMessage)> CreateAsync(CreateEmployeeDto dto)
         {
-            // Check if department exists
             if (!await _departmentRepository.ExistsAsync(dto.DepartmentId))
                 return (null, $"Department with ID {dto.DepartmentId} not found");
 
-            // Check if email already exists
             if (await _employeeRepository.EmailExistsAsync(dto.Email))
                 return (null, "An employee with this email already exists");
 
@@ -64,7 +62,6 @@ namespace EmployeeDepartmentAndProjectManagement.Services
 
             var created = await _employeeRepository.CreateAsync(employee);
 
-            // Reload with includes (Department, EmployeeProjects)
             created = await _employeeRepository.GetByIdAsync(created.Id);
 
             return (MapToResponseDto(created), null);
@@ -77,11 +74,9 @@ namespace EmployeeDepartmentAndProjectManagement.Services
             if (employee == null)
                 return (null, $"Employee with ID {id} not found");
 
-            // Check if department exists
             if (!await _departmentRepository.ExistsAsync(dto.DepartmentId))
                 return (null, $"Department with ID {dto.DepartmentId} not found");
 
-            // Check if email already exists (for another employee)
             if (await _employeeRepository.EmailExistsAsync(dto.Email, id))
                 return (null, "An employee with this email already exists");
 
@@ -93,7 +88,6 @@ namespace EmployeeDepartmentAndProjectManagement.Services
 
             await _employeeRepository.UpdateAsync(employee);
 
-            // Reload with includes
             var updated = await _employeeRepository.GetByIdAsync(id);
 
             return (MapToResponseDto(updated), null);
@@ -106,7 +100,6 @@ namespace EmployeeDepartmentAndProjectManagement.Services
             if (employee == null)
                 return (false, $"Employee with ID {id} not found");
 
-            // Note: EmployeeProjects will be cascade deleted automatically
             await _employeeRepository.DeleteAsync(employee);
 
             return (true, null);

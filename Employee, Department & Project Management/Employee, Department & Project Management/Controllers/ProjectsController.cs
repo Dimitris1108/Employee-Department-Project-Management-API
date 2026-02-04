@@ -17,6 +17,10 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // GET: api/projects
+        /// <summary>
+        /// Get all project info.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -25,6 +29,11 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // GET: api/projects/5
+        /// <summary>
+        /// Get project ID.
+        /// </summary>
+        /// <param name="id">Project ID.</param>
+        /// <returns>IActionResult.</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -37,6 +46,11 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // POST: api/projects
+        /// <summary>
+        /// Create project entry.
+        /// </summary>
+        /// <param name="dto">CreateProjectDto.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Create(CreateProjectDto dto)
         {
@@ -52,6 +66,12 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // PUT: api/projects/5
+        /// <summary>
+        /// Update project entry.
+        /// </summary>
+        /// <param name="id">Project ID.</param>
+        /// <param name="dto">UpdateProjectDto.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdateProjectDto dto)
         {
@@ -72,6 +92,11 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // DELETE: api/projects/5
+        /// <summary>
+        /// Delete project entry.
+        /// </summary>
+        /// <param name="id">Project ID.</param>
+        /// <returns>IActionResult.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

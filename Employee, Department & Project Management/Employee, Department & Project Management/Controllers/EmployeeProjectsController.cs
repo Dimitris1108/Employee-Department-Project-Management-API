@@ -17,6 +17,10 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Get all employee project info.
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -24,6 +28,12 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
             return Ok(assignments);
         }
 
+        /// <summary>
+        /// Get employee project ID  
+        /// </summary>
+        /// <param name="employeeId">employeeId.</param>
+        /// <param name="projectId">projectId</param>
+        /// <returns>IActionResult.</returns>
         [HttpGet("{employeeId}/{projectId}")]
         public async Task<IActionResult> GetById(int employeeId, int projectId)
         {
@@ -35,6 +45,11 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
             return Ok(assignment);
         }
 
+        /// <summary>
+        /// Create employee project entry.
+        /// </summary>
+        /// <param name="dto">AssignEmployeeDto.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Assign(AssignEmployeeDto dto)
         {
@@ -53,6 +68,13 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
             );
         }
 
+        /// <summary>
+        /// Update employee project entry.
+        /// </summary>
+        /// <param name="employeeId">employeeId.</param>
+        /// <param name="projectId">projectId.</param>
+        /// <param name="dto">UpdateAssignmentDto.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPut("{employeeId}/{projectId}")]
         public async Task<IActionResult> UpdateRole(int employeeId, int projectId, UpdateAssignmentDto dto)
         {
@@ -66,6 +88,13 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
 
             return Ok(assignment);
         }
+
+        /// <summary>
+        /// Delete employee project entry
+        /// </summary>
+        /// <param name="employeeId">employeeId.</param>
+        /// <param name="projectId">projectId.</param>
+        /// <returns>IActionResult.</returns>
 
         [HttpDelete("{employeeId}/{projectId}")]
         public async Task<IActionResult> Remove(int employeeId, int projectId)

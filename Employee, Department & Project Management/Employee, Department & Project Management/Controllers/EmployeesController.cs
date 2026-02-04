@@ -17,6 +17,10 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // GET: api/employees
+        /// <summary>
+        /// Get all employee info. 
+        /// </summary>
+        /// <returns>IActionResult.</returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -25,6 +29,11 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // GET: api/employees/5
+        /// <summary>
+        /// Get employee id 
+        /// </summary>
+        /// <param name="id">Employee ID.</param>
+        /// <returns>IActionResult.</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -37,6 +46,11 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // POST: api/employees
+        /// <summary>
+        /// Creates employee entry.
+        /// </summary>
+        /// <param name="dto">CreateEmployeeDto.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Create(CreateEmployeeDto dto)
         {
@@ -52,6 +66,12 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // PUT: api/employees/5
+        /// <summary>
+        /// Update employee entry.
+        /// </summary>
+        /// <param name="id">Emplyee ID.</param>
+        /// <param name="dto">UpdateEmplyeeDto.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdateEmployeeDto dto)
         {
@@ -72,6 +92,12 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // DELETE: api/employees/5
+        /// <summary>
+        /// Delete entry.
+        /// </summary>
+        /// <param name="id">Employee ID.</param>
+        /// <returns>IActionResult.</returns>
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -84,6 +110,11 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // GET: api/employees/5/projects
+        /// <summary>
+        /// Get Employee projects.
+        /// </summary>
+        /// <param name="id">Employee ID</param>
+        /// <returns>IActionResult.</returns>
         [HttpGet("{id}/projects")]
         public async Task<IActionResult> GetEmployeeProjects(int id)
         {

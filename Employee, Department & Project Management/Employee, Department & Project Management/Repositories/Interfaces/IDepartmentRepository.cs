@@ -6,6 +6,10 @@ namespace EmployeeDepartmentAndProjectManagement.Repositories.Interfaces
 {
     public interface IDepartmentRepository
     {
+        /// <summary>
+        /// Gets all department entries.
+        /// </summary>
+        /// <returns>Departments.</returns>
         Task<IEnumerable<Department>> GetAllAsync();
         Task<Department> GetByIdAsync(int id);
         Task<Department> CreateAsync(Department department);

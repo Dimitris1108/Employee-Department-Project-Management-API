@@ -6,6 +6,10 @@ namespace EmployeeDepartmentAndProjectManagement.Services.Interfaces
 {
     public interface IDepartmentService
     {
+        /// <summary>
+        /// Get all department entries.
+        /// </summary>
+        /// <returns>Departments.</returns>
         Task<IEnumerable<DepartmentResponseDto>> GetAllAsync();
         Task<DepartmentResponseDto> GetByIdAsync(int id);
         Task<DepartmentResponseDto> CreateAsync(CreateDepartmentDto dto);

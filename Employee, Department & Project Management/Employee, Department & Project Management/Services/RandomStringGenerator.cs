@@ -21,7 +21,6 @@ namespace EmployeeDepartmentAndProjectManagement.Services
         {
             try
             {
-                // Call external API
                 var response = await _httpClient.GetAsync(_url);
 
                 response.EnsureSuccessStatusCode();

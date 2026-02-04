@@ -6,6 +6,10 @@ namespace EmployeeDepartmentAndProjectManagement.Services.Interfaces
 {
     public interface IEmployeeProjectService
     {
+        /// <summary>
+        /// Get all employee projects entries.
+        /// </summary>
+        /// <returns>Employee projects.</returns>
         Task<IEnumerable<EmployeeProjectResponseDto>> GetAllAsync();
         Task<EmployeeProjectResponseDto> GetByIdAsync(int employeeId, int projectId);
         Task<(EmployeeProjectResponseDto Assignment, string ErrorMessage)> AssignAsync(AssignEmployeeDto dto);

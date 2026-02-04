@@ -17,6 +17,10 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // GET: api/departments
+        /// <summary>
+        /// Get all Departments
+        /// </summary>
+        /// <returns>IActionResult</returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -25,6 +29,11 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // GET: api/departments/5
+        /// <summary>
+        /// Get department by id.
+        /// </summary>
+        /// <param name="id">Department Id.</param>
+        /// <returns>IActionResult</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -37,6 +46,11 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // POST: api/departments
+        /// <summary>
+        /// Creates department entry.
+        /// </summary>
+        /// <param name="dto">CreateDepartmentDto.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPost]
         public async Task<IActionResult> Create(CreateDepartmentDto dto)
         {
@@ -49,6 +63,12 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // PUT: api/departments/5
+        /// <summary>
+        /// Update department entry.
+        /// </summary>
+        /// <param name="id">DepartmentID.</param>
+        /// <param name="dto">UpdateDepartmentDto.</param>
+        /// <returns>IActionResult.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdateDepartmentDto dto)
         {
@@ -64,6 +84,11 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
         }
 
         // DELETE: api/departments/5
+        /// <summary>
+        /// Delete entry.
+        /// </summary>
+        /// <param name="id">DepartmentID.</param>
+        /// <returns>IActionResult.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -71,7 +96,6 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
 
             if (!success)
             {
-                // Return 404 if not found, 400 if has employees
                 if (errorMessage.Contains("not found"))
                     return NotFound(new { message = errorMessage });
 

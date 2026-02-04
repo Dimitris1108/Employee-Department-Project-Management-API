@@ -7,6 +7,10 @@ namespace EmployeeDepartmentAndProjectManagement.Services.Interfaces
 {
     public interface IEmployeeService
     {
+        /// <summary>
+        /// Get all employee entries.
+        /// </summary>
+        /// <returns>Employees.</returns>
         Task<IEnumerable<EmployeeResponseDto>> GetAllAsync();
         Task<EmployeeResponseDto> GetByIdAsync(int id);
         Task<(EmployeeResponseDto Employee, string ErrorMessage)> CreateAsync(CreateEmployeeDto dto);
