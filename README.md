@@ -17,7 +17,6 @@ Employees can work on multiple projects, and each project can have multiple empl
 - ASP.NET Core 5
 - Entity Framework Core 5
 - SQL Server
-- Swagger for API docs
 
 ## Project Structure
 ```
@@ -65,8 +64,6 @@ The code follows a layered architecture: Controllers call Services, Services cal
 ```bash
    dotnet run
 ```
-
-5. Open Swagger at `https://localhost:5001/swagger`
 
 ## API Endpoints
 
@@ -134,7 +131,7 @@ POST /api/projects
 }
 ```
 
-The `projectCode` is generated automatically from an external API + project ID.
+The `projectCode` is generated automatically from an external API.
 
 ### Employee-Project Assignments
 
@@ -168,4 +165,4 @@ Employees   (Many) ──── (Many) Projects  [via EmployeeProjects with Role
 - Deleting a department with employees is blocked.
 - Deleting an employee removes their project assignments (cascade).
 - Project creation uses a transaction - if the external API fails, nothing gets saved.
-- Project codes are: random string from API + project ID (e.g., "A1B2C3D41").
+- Project codes are: random string from API.
