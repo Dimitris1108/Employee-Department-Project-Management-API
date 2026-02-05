@@ -79,6 +79,7 @@ The code follows a layered architecture: Controllers call Services, Services cal
 | POST | `/api/departments` | Create |
 | PUT | `/api/departments/{id}` | Update |
 | DELETE | `/api/departments/{id}` | Delete |
+| GET | `/api/departments/{id}/budget` | Get total project budget |
 
 **Create department:**
 ```json
