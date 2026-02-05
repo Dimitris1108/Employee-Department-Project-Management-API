@@ -15,5 +15,6 @@ namespace EmployeeDepartmentAndProjectManagement.Services.Interfaces
         Task<DepartmentResponseDto> CreateAsync(CreateDepartmentDto dto);
         Task<DepartmentResponseDto> UpdateAsync(int id, UpdateDepartmentDto dto);
         Task<(bool Success, string ErrorMessage)> DeleteAsync(int id);
+        Task<object> GetTotalBudgetAsync(int id);
     }
 }

@@ -104,5 +104,22 @@ namespace EmployeeDepartmentAndProjectManagement.Controllers
 
             return NoContent();
         }
+
+        // GET: api/departments/5/budget
+        /// <summary>
+        /// Get total project budget for a department.
+        /// </summary>
+        /// <param name="id">DepartmentID.</param>
+        /// <returns>IActionResult.</returns>
+        [HttpGet("{id}/budget")]
+        public async Task<IActionResult> GetTotalBudget(int id)
+        {
+            var result = await _service.GetTotalBudgetAsync(id);
+
+            if (result == null)
+                return NotFound(new { message = $"Department with ID {id} not found" });
+
+            return Ok(result);
+        }
     }
 }

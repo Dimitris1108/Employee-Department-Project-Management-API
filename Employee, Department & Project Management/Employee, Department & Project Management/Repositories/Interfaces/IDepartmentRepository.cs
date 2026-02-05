@@ -16,5 +16,6 @@ namespace EmployeeDepartmentAndProjectManagement.Repositories.Interfaces
         Task<Department> UpdateAsync(Department department);
         Task DeleteAsync(Department department);
         Task<bool> ExistsAsync(int id);
+        Task<decimal> GetTotalBudgetAsync(int departmentId);
     }
 }

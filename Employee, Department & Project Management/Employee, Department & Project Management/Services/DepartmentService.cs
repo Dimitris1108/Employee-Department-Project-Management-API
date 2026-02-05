@@ -73,6 +73,23 @@ namespace EmployeeDepartmentAndProjectManagement.Services
             return (true, null);
         }
 
+        public async Task<object> GetTotalBudgetAsync(int id)
+        {
+            var department = await _repository.GetByIdAsync(id);
+
+            if (department == null)
+                return null;
+
+            var totalBudget = await _repository.GetTotalBudgetAsync(id);
+
+            return new
+            {
+                DepartmentId = id,
+                DepartmentName = department.Name,
+                TotalProjectBudget = totalBudget
+            };
+        }
+
         private DepartmentResponseDto MapToResponseDto(Department department)
         {
             return new DepartmentResponseDto

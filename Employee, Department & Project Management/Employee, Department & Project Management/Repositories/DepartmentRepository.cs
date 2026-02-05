@@ -55,5 +55,16 @@ namespace EmployeeDepartmentAndProjectManagement.Repositories
         {
             return await _context.Departments.AnyAsync(d => d.Id == id);
         }
+        public async Task<decimal> GetTotalBudgetAsync(int departmentId)
+        {
+            var totalBudget = await _context.Employees
+                .Where(e => e.DepartmentId == departmentId)
+                .SelectMany(e => e.EmployeeProjects)
+                .Select(ep => ep.Project)
+                .Distinct()
+                .SumAsync(p => p.Budget);
+
+            return totalBudget;
+        }
     }
 }
