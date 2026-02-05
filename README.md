@@ -6,7 +6,7 @@ A RESTful API built with ASP.NET Core 5 for managing employees, departments, and
 
 This API handles:
 - **Departments** - company organizational units
-- **Employees** - staff members belonging to departments
+- **Employees** - staff members belonging to departments with salary info
 - **Projects** - initiatives with budgets and auto-generated codes
 - **Assignments** - linking employees to projects with specific roles
 
@@ -17,9 +17,9 @@ Employees can work on multiple projects, and each project can have multiple empl
 - ASP.NET Core 5
 - Entity Framework Core 5
 - SQL Server
-- Swagger for API docs
 
 ## Project Structure
+
 ```
 ├── Controllers/        # API endpoints
 ├── Services/           # Business logic
@@ -37,36 +37,36 @@ The code follows a layered architecture: Controllers call Services, Services cal
 ### Prerequisites
 
 - .NET 5 SDK
-- SQL Server (LocalDB works fine)
+- SQL Server (LocalDB or SQL Server Express)
 
 ### Setup
 
 1. Clone the repo
-```bash
-   git clone https://github.com/yourusername/EmployeeDepartmentAndProjectManagement.git
-   cd EmployeeDepartmentAndProjectManagement
-```
+   ```bash
+   git clone https://github.com/Dimitris1108/Employee-Department-Project-Management-API.git
+   cd Employee-Department-Project-Management-API
+   ```
 
 2. Update connection string in `appsettings.json` if needed
-```json
+   ```json
    {
      "ConnectionStrings": {
-       "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=CompanyManagementDB;Trusted_Connection=True;"
+       "DefaultConnection": "Server=localhost\\SQLEXPRESS;Database=CompanyManagementDB;Trusted_Connection=True;"
      }
    }
-```
+   ```
 
 3. Run migrations
-```bash
+   ```bash
    dotnet ef database update
-```
+   ```
 
 4. Start the app
-```bash
+   ```bash
    dotnet run
-```
+   ```
 
-5. Open Swagger at `https://localhost:5001/swagger`
+5. Test the API using Postman or any HTTP client at `https://localhost:5000/api`
 
 ## API Endpoints
 
@@ -134,7 +134,7 @@ POST /api/projects
 }
 ```
 
-The `projectCode` is generated automatically from an external API + project ID.
+The `projectCode` is generated automatically using an external API and appended with the project ID (e.g., "xK9mB2pL1").
 
 ### Employee-Project Assignments
 
@@ -157,15 +157,31 @@ POST /api/employeeprojects
 }
 ```
 
-## Database
+## Database Schema
+
 ```
 Departments (1) ──── (Many) Employees
 Employees   (Many) ──── (Many) Projects  [via EmployeeProjects with Role]
 ```
+
+### Entity Fields
+
+**Department**
+- Id, Name, OfficeLocation
+
+**Employee**
+- Id, FirstName, LastName, Email, Salary, DepartmentId
+
+**Project**
+- Id, Name, Budget, ProjectCode
+
+**EmployeeProject**
+- EmployeeId, ProjectId, Role
 
 ## Notes
 
 - Deleting a department with employees is blocked.
 - Deleting an employee removes their project assignments (cascade).
 - Project creation uses a transaction - if the external API fails, nothing gets saved.
-- Project codes are: random string from API + project ID (e.g., "A1B2C3D41").
+- Project codes are generated from an external random string API + project ID.
+- External API URL is configured in `appsettings.json` under `ExternalServices:RandomStringGeneratorUrl`.
